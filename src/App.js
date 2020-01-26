@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
+import TodoList from "./components/TodoList/TodoList";
+import { connect, useSelector } from "react-redux";
+
+function App(props) {
+
+  //using react-redux hooks
+  const todoItems = useSelector(state => {
+    return state.todoItems;
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <div className="appContainer">
+        <div className="title">Test todolist</div>
+        <div className="App">
+          <TodoList todoList={todoItems} />
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
+
+// const mapStateToProps = state => {
+//   return { todoItems: state.todoItems };
+// };
+
+// export default connect(mapStateToProps)(App);
 
 export default App;
